@@ -1,36 +1,56 @@
 #include <stdio.h>
+#include <conio.h>
 
-int main()
+void main()
 {
     FILE *fp;
     char name[300];
 
-    // Writing data into the file
-    fp = fopen("student.txt", "w");
+
+    // 1. Writing data into file
+    fp = fopen("feedback.txt", "w");
 
     if (fp == NULL)
     {
-        printf("File cannot be opened for writing");
-        return 1;
+        printf("File cannot be opened");
+        
+        return;
     }
 
-    fprintf(fp, "Welcome to C Programming\n");
-    fprintf(fp, "File Handling in C");
+    fprintf(fp, "The session was very useful and engaging. The trainer explained C programming concepts in a clear and understandable manner. The examples and practice exercises helped improve my coding skills and confidence.");
 
     fclose(fp);
 
-    printf("Data written successfully\n\n");
+    printf("Data written successfully\n");
 
-    // Reading data from the file
-    fp = fopen("student.txt", "r");
+
+    // 2. Appending data into file
+    fp = fopen("feedback.txt", "a");
 
     if (fp == NULL)
     {
-        printf("File cannot be opened for reading");
-        return 1;
+        printf("File cannot be opened");
+        return;
     }
 
-    printf("File Contents:\n");
+    fprintf(fp, "\nvery super class is c program one of the best subject in c and my fav is c program ");
+
+    fclose(fp);
+
+    printf("Data appended successfully\n");
+
+
+    // 3. Reading data from file
+    fp = fopen("feedback.txt", "r");
+
+    if (fp == NULL)
+    {
+        printf("File cannot be opened");
+       
+        return;
+    }
+
+    printf("\nFile Contents:\n");
 
     while (fgets(name, sizeof(name), fp) != NULL)
     {
@@ -39,5 +59,5 @@ int main()
 
     fclose(fp);
 
-    return 0;
+    
 }
